@@ -31,3 +31,26 @@ function operation(string) {
             break;
     }
 }
+
+let displayContent = "";
+const display = document.querySelector("#display");
+const inputButtons = document.querySelectorAll(".input");
+const characters = ["7", "8", "9", " ÷ ", "4", "5", "6", " x ", "1", "2", "3", " - ", ".", "0", "", " + "];
+for (let i in characters) {
+    if (characters[i] === " ÷ " || characters[i] === " x " || characters[i] === " - " ||
+    characters[i] === " + ") {
+        inputButtons[i].addEventListener("click", () => {
+            if (displayContent.split(" ").length === 3) {
+                displayContent = operation(displayContent);
+                display.textContent = displayContent;
+            }
+            displayContent += `${characters[i]}`;
+            display.textContent = displayContent;
+        });
+    } else {
+        inputButtons[i].addEventListener("click", () => {
+            displayContent += `${characters[i]}`;
+            display.textContent = displayContent;
+        });
+    }
+}
