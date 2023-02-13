@@ -55,3 +55,13 @@ for (let i in characters) {
         }
     })
 }
+const dotButton = document.querySelector(".dot");
+dotButton.addEventListener("click", () => {
+    if ((displayContent.split(" ").length === 1 && displayContent !== "" &&
+        displayContent.split(" ")[0].indexOf(".") === -1) || 
+        (displayContent.split(" ").length === 3 && displayContent.split(" ")[2] !== "" &&
+        displayContent.split(" ")[2].indexOf(".") === -1)) {
+        displayContent += ".";
+        display.textContent = displayContent;
+    }
+});
