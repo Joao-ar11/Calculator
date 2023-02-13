@@ -34,23 +34,24 @@ function operation(string) {
 
 let displayContent = "";
 const display = document.querySelector("#display");
-const inputButtons = document.querySelectorAll(".input");
-const characters = ["7", "8", "9", " ÷ ", "4", "5", "6", " x ", "1", "2", "3", " - ", ".", "0", "", " + "];
+const numberButtons = document.querySelectorAll(".number");
+const numbers = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0"];
+for (let i in numbers) {
+    numberButtons[i].addEventListener("click", () => {
+        displayContent += `${numbers[i]}`;
+        display.textContent = displayContent;
+    });
+}
+const operationButtons = document.querySelectorAll(".operation");
+const characters = [" ÷ ", " x ", " - ", "", " + "];
 for (let i in characters) {
-    if (characters[i] === " ÷ " || characters[i] === " x " || characters[i] === " - " ||
-    characters[i] === " + ") {
-        inputButtons[i].addEventListener("click", () => {
-            if (displayContent.split(" ").length === 3) {
-                displayContent = operation(displayContent);
-                display.textContent = displayContent;
-            }
+    operationButtons[i].addEventListener("click", () => {
+        if (displayContent.split(" ").length >= 3) {
+            displayContent = operation(displayContent) + `${characters[i]}`;
+            display.textContent = displayContent;
+        } else if (displayContent.split(" ").length === 1 && displayContent !== "") {
             displayContent += `${characters[i]}`;
             display.textContent = displayContent;
-        });
-    } else {
-        inputButtons[i].addEventListener("click", () => {
-            displayContent += `${characters[i]}`;
-            display.textContent = displayContent;
-        });
-    }
+        }
+    })
 }
