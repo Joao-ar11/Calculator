@@ -61,9 +61,9 @@ for (let i in characters) {
 const dotButton = document.querySelector(".dot");
 dotButton.addEventListener("click", () => {
     if ((displayContent.split(" ").length === 1 && displayContent !== "" &&
-        displayContent.split(" ")[0].indexOf(".") === -1) || 
+        !displayContent.split(" ")[0].includes(".")) || 
         (displayContent.split(" ").length === 3 && displayContent.split(" ")[2] !== "" &&
-        displayContent.split(" ")[2].indexOf(".") === -1)) {
+        !displayContent.split(" ")[2].includes("."))) {
         displayContent += ".";
         display.textContent = displayContent;
     }
@@ -72,4 +72,15 @@ dotButton.addEventListener("click", () => {
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => {
     display.textContent = displayContent = "";
+});
+
+const deleteButton = document.querySelector("#delete");
+deleteButton.addEventListener("click", () => {
+    if (!displayContent.endsWith(" ")) {
+        displayContent = displayContent.slice(0, -1);
+        display.textContent = displayContent;
+    } else {
+        displayContent = displayContent.slice(0, -3);
+        display.textContent = displayContent;
+    }
 });
