@@ -34,6 +34,7 @@ function operation(string) {
 
 let displayContent = "";
 const display = document.querySelector("#display");
+
 const numberButtons = document.querySelectorAll(".number");
 const numbers = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0"];
 for (let i in numbers) {
@@ -42,6 +43,7 @@ for (let i in numbers) {
         display.textContent = displayContent;
     });
 }
+
 const operationButtons = document.querySelectorAll(".operation");
 const characters = [" ÷ ", " x ", " - ", "", " + "];
 for (let i in characters) {
@@ -55,6 +57,7 @@ for (let i in characters) {
         }
     })
 }
+
 const dotButton = document.querySelector(".dot");
 dotButton.addEventListener("click", () => {
     if ((displayContent.split(" ").length === 1 && displayContent !== "" &&
@@ -64,4 +67,9 @@ dotButton.addEventListener("click", () => {
         displayContent += ".";
         display.textContent = displayContent;
     }
+});
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => {
+    display.textContent = displayContent = "";
 });
