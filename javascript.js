@@ -48,7 +48,10 @@ const operationButtons = document.querySelectorAll(".operation");
 const characters = [" ÷ ", " x ", " - ", "", " + "];
 for (let i in characters) {
     operationButtons[i].addEventListener("click", () => {
-        if (displayContent.split(" ").length >= 3) {
+        if (displayContent.endsWith(" ÷ 0")) {
+            alert("∞");
+            display.textContent= displayContent = "";
+        } else if (displayContent.split(" ").length >= 3) {
             displayContent = operation(displayContent) + `${characters[i]}`;
             display.textContent = displayContent;
         } else if (displayContent.split(" ").length === 1 && displayContent !== "") {
